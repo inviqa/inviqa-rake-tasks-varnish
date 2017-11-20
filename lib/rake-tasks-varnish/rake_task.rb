@@ -1,5 +1,3 @@
-require_relative 'services'
-
 namespace :varnish do
   def parse_varnish_args(args)
     if args.length > 2
@@ -10,9 +8,9 @@ namespace :varnish do
     args
   end
 
-  task :console do
+  task :log do
     args = parse_varnish_args(ARGV)
-    command = 'varnishd' + args.join(' ')
+    command = 'varnishlog' + args.join(' ')
     services_from_args(services: %w[varnish]).exec(
       'root',
       "bash -c '#{command}'"
